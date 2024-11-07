@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* עיצובים כלליים */
+body {
+  @apply bg-gray-100 text-gray-800;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+}
+
+/* מירכוז אלמנטים */
+.center {
+  @apply flex items-center justify-center;
+}
+
+.input-type-text{
+    @apply w-full px-4 py-2 mt-1 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500
+}
