@@ -6,9 +6,9 @@ export async function POST(req: NextRequest) {
     try {
         await connect();
 
-        const { email, userName, password } = await req.json();
+        const { email, password } = await req.json();
 
-        if (!email || !userName || !password) {
+        if (!email || !password) {
             return NextResponse.json({ message: "All fields are required" }, { status: 400 });
         }
 
@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
             if (isPasswordCorrect) {
                 return NextResponse.json({ message: "Login successful", user: existingUser });
             } else {
-                return NextResponse.json({ message: "Invalid password" }, { status: 401 });
+                return NextResponse.json({ message: "Incorrect password" }, { status: 401 });
             }
         } else {
             return NextResponse.json({ message: "User not found" }, { status: 404 });

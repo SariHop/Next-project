@@ -4,7 +4,7 @@ import UserForm from '@/app/components/UserForm'
 const page = () => {
   return (
     <div>
-      <UserForm type='Login'/>
+       <UserForm type='Submit'/>
     </div>
   )
 }

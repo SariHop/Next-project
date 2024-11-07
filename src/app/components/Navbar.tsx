@@ -8,6 +8,7 @@ interface NavItem {
 
 const navItems: NavItem[] = [
     { href: '/pages/login', text: 'Login' },
+    { href: '/pages/submit', text: 'Submit' },
 ];
 
 const NavBar: React.FC = () => {

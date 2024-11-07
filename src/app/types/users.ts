@@ -11,3 +11,7 @@ export interface IuserForm {
   email: string;
   password: string;
 }
+
+export interface IuserFormProps {
+  type: string
+}
