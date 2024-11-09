@@ -7,9 +7,10 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
     try {
         await connect();
         const {id} = await params
-        const { make, model, year } = await req.json();
+        const { make, modal, year } = await req.json();
+        console.log(make, modal, year)
 
-        const updatedCar = await CarsModel.findByIdAndUpdate(id, { make, model, year }, { new: true });
+        const updatedCar = await CarsModel.findByIdAndUpdate(id, { make, modal, year }, { new: true });
         
         if (!updatedCar) {
             return NextResponse.json({ message: 'Car not found' }, { status: 404 });

@@ -4,6 +4,7 @@ import CarsModel from '@/app/lib/models/car';
 
 
 export async function GET() {
+    debugger
     try {
         await connect()
         const data = await CarsModel.find()
@@ -18,16 +19,16 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
-
     try {
         await connect()
-        const { make, model, year } = await req.json()
+        const { make,modal, year } = await req.json()
+        console.log(make,modal, year)
 
-        if (!make || !model || !year) {
+        if (!make || !modal || !year) {
             return NextResponse.json({ message: "All fields are required" }, { status: 400 });
         }
 
-        const car = new CarsModel({ make, model, year })
+        const car = new CarsModel({ make, modal, year })
         await car.save()
         return NextResponse.json({ message: "Car create", newCar: car });
 

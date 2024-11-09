@@ -96,7 +96,7 @@ const UserForm = (props: IuserFormProps) => {
 
                 <button
                     type="submit"
-                    className="w-full px-4 py-2 font-semibold text-white bg-blue-500 rounded hover:bg-blue-600"
+                    className="button w-full font-semibold bg-blue-500 hover:bg-blue-600"
                     disabled={isPending}
                 >
                     {isPending ? "Loading..." : props.type}
