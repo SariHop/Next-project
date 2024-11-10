@@ -1,23 +1,22 @@
 import connect from '@/app/lib/db/mongodb';
 import { NextRequest, NextResponse } from 'next/server';
-import CarsModel from '@/app/lib/models/car';
-
+import BooksModel from '@/app/lib/models/book';
 
 
 export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
     try {
         await connect();
         const {id} = await params
-        const { make, modal, year } = await req.json();
-        console.log(make, modal, year)
+        const {title,author,publicationYear } = await req.json();
+        console.log(title,author,publicationYear)
 
-        const updatedCar = await CarsModel.findByIdAndUpdate(id, { make, modal, year }, { new: true });
+        const updateBook = await BooksModel.findByIdAndUpdate(id, {title,author,publicationYear }, { new: true });
         
-        if (!updatedCar) {
-            return NextResponse.json({ message: 'Car not found' }, { status: 404 });
+        if (!updateBook) {
+            return NextResponse.json({ message: 'Book not found' }, { status: 404 });
         }
 
-        return NextResponse.json({ message: 'Car updated', updatedCar });
+        return NextResponse.json({ message: 'Book updated', updateBook });
     } catch (error: unknown) {
         if (error instanceof Error) {
             return NextResponse.json({ message: 'Error occurred', error: error.message }, { status: 500 });
@@ -32,11 +31,11 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
         await connect();
         const {id} = await params
 
-        const deletedCar = await CarsModel.findByIdAndDelete(id);
-        if (!deletedCar) {
-            return NextResponse.json({ message: 'Car not found' }, { status: 404 });
+        const deletedBook = await BooksModel.findByIdAndDelete(id);
+        if (!deletedBook) {
+            return NextResponse.json({ message: 'Book not found' }, { status: 404 });
         }
-        return NextResponse.json({ message: 'Car deleted', deletedCar });
+        return NextResponse.json({ message: 'Book deleted', deletedBook });
 
     } catch (error: unknown) {
         if (error instanceof Error) {

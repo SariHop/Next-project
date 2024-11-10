@@ -1,23 +1,22 @@
 import connect from '@/app/lib/db/mongodb';
 import { NextRequest, NextResponse } from 'next/server';
-import CarsModel from '@/app/lib/models/car';
-
+import TaskModel from '@/app/lib/models/task';
 
 
 export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
     try {
         await connect();
-        const {id} = await params
-        const { make, modal, year } = await req.json();
-        console.log(make, modal, year)
+        const { id } = await params
+        const { title, done, description } = await req.json();
+        console.log(title, done, description)
 
-        const updatedCar = await CarsModel.findByIdAndUpdate(id, { make, modal, year }, { new: true });
-        
-        if (!updatedCar) {
-            return NextResponse.json({ message: 'Car not found' }, { status: 404 });
+        const updatedTask = await TaskModel.findByIdAndUpdate(id, { title, done, description }, { new: true });
+
+        if (!updatedTask) {
+            return NextResponse.json({ message: 'Task not found' }, { status: 404 });
         }
 
-        return NextResponse.json({ message: 'Car updated', updatedCar });
+        return NextResponse.json({ message: 'Task updated', updatedTask });
     } catch (error: unknown) {
         if (error instanceof Error) {
             return NextResponse.json({ message: 'Error occurred', error: error.message }, { status: 500 });
@@ -30,13 +29,13 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
 export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
     try {
         await connect();
-        const {id} = await params
+        const { id } = await params
 
-        const deletedCar = await CarsModel.findByIdAndDelete(id);
-        if (!deletedCar) {
-            return NextResponse.json({ message: 'Car not found' }, { status: 404 });
+        const deletedTask = await TaskModel.findByIdAndDelete(id);
+        if (!deletedTask) {
+            return NextResponse.json({ message: 'Task not found' }, { status: 404 });
         }
-        return NextResponse.json({ message: 'Car deleted', deletedCar });
+        return NextResponse.json({ message: 'Task deleted', deletedTask });
 
     } catch (error: unknown) {
         if (error instanceof Error) {
