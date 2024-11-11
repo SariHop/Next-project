@@ -1,8 +1,11 @@
+import ToDoCRUD from '@/app/components/ToDoCRUD'
 import React from 'react'
 
 export const page = () => {
   return (
-    <div>page</div>
+    <div>
+      <ToDoCRUD></ToDoCRUD>
+    </div>
   )
 }
 

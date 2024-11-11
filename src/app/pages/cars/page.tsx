@@ -1,10 +1,10 @@
 import React from 'react'
-import ListsCRUD from '@/app/components/ListsCRUD'
+import CarsCRUD from '@/app/components/CarsCRUD'
 
 export const page = () => {
   return (
     <div>
-      <ListsCRUD></ListsCRUD>
+      <CarsCRUD></CarsCRUD>
     </div>
   )
 }

@@ -1,8 +1,12 @@
 import React from 'react'
+import BooksCRUD from '@/app/components/BooksCRUD'
+
 
 export const page = () => {
   return (
-    <div>page</div>
+    <div>
+       <BooksCRUD></BooksCRUD>
+    </div>
   )
 }
 
